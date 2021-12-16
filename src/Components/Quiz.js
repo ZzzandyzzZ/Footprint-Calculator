@@ -98,7 +98,7 @@ class Quiz extends Component {
             validators: [
               {
                 type: "numeric",
-                minValue:0,
+                minValue: 0,
                 maxValue: 10000,
               },
             ],
@@ -278,7 +278,7 @@ class Quiz extends Component {
       const n = sender.data["numberHome"];
       const nc = sender.data["transport1"];
       const ha = sender.data["transport2"];
-      const P3 = (ha * 4.2 * 52) / nc;
+      var P3 = 0;
       var transport_public = sender.data["transport3"];
       var ht = 0;
       var htp = 0;
@@ -292,18 +292,28 @@ class Quiz extends Component {
       }
       const P4 = ht * 3.5 * 52;
       const P5 = htp * 4.2 * 52;
-      const P6 = (gaso * 0.217 * 2.37) / nc;
+      var P6 = 0;
+      if (nc > 0) {
+        P6 = (gaso * 0.217 * 2.37) / nc;
+        P3 = (ha * 4.2 * 52) / nc;
+      }
       const P7 = hav * 75;
       const luz = sender.data["energy1"];
-      const P8 = (luz * 1.28 * 12) / n;
+      var P9 = 0;
+      var P8 = 0;
+
+      if (n > 0) {
+        P8 = (luz * 1.28 * 12) / n;
+        P9 = (14.25 * gas * 12) / n;
+      }
       const gas = sender.data["energy2"];
-      const P9 = (14.25 * gas * 12) / n;
       const carne = sender.data["aliment1"];
       const P10 = carne * 5.4 * 52;
       const bolsas = sender.data["residue1"];
       const P11 = bolsas * 0.033 * 52;
 
-      const HC = ((P3 + P6) / 2 + P4 + P5 + P6 + P9 + P10 + P11) / 1000;
+      const HC =
+        ((P3 + P6) / 2 + P4 + P5 + P6 + P8 + P7 + P9 + P10 + P11) / 1000;
 
       var data = sender.data;
       data.email = email;
