@@ -114,8 +114,7 @@ class Quiz extends Component {
             type: "text",
             name: "transport4",
             visibleIf: "{transport3} == true",
-            title:
-              "¿Cuántas horas pasa a la semana en promedio en el transporte público? ",
+            title:"¿Cuántas horas normalmente utiliza taxis a la semana?",
             isRequired: true,
             validators: [
               {
@@ -129,6 +128,21 @@ class Quiz extends Component {
             type: "text",
             name: "transport5",
             visibleIf: "{transport3} == true",
+            title:
+              "¿Cuántas horas pasa a la semana en promedio en el transporte público? ",
+            isRequired: true,
+            validators: [
+              {
+                type: "numeric",
+                minValue: 3,
+                maxValue: 10000,
+              },
+            ],
+          },
+          {
+            type: "text",
+            name: "transport6",
+            visibleIf: "{transport3} == true",
             title: "¿Cuánto dinero gasta en gasolina por semana?",
             isRequired: true,
             validators: [
@@ -141,7 +155,7 @@ class Quiz extends Component {
           },
           {
             type: "text",
-            name: "transport6",
+            name: "transport7",
             visibleIf: "{transport3} == true",
             title: "¿Cantidad de horas que viaja al año en avión?",
             isRequired: true,
@@ -261,10 +275,19 @@ class Quiz extends Component {
       const nc = sender.data["transport1"];
       const ha = sender.data["transport2"];
       const P3 = (ha * 4.2 * 52) / nc;
-      const ht = sender.data["transport4"];
-      const htp = sender.data["transport5"];
-      const gaso = sender.data["transport6"];
-      const hav = sender.data["transport7"];
+      const transport_public = sender.data["transport3"];
+      if (transport_public == false){
+        const ht = 0;
+        const htp = 0;
+        const gaso = 0;
+        const hav = 0;
+      }
+      else{
+        const ht = sender.data["transport4"];
+        const htp = sender.data["transport5"];
+        const gaso = sender.data["transport6"];
+        const hav = sender.data["transport7"];
+      }
       const P4 = ht * 3.5 * 52;
       const P5 = htp * 4.2 * 52;
       const P6 = (gaso * 0.217 * 2.37) / nc;
