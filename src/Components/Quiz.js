@@ -64,8 +64,23 @@ class Quiz extends Component {
 
                 },
                 {
+                  "type": "text",
+                  "name": "transport4",
+                  "visibleIf": "{transport3} == true",
+                  "title": "¿Cuántas horas normalmente utiliza taxis a la semana?",
+                  "isRequired": true,
+                  "validators": [
+                      {
+                          "type": "numeric",
+                          "minValue": 3,
+                          "maxValue": 10000
+                      }
+                  ]
+
+              },
+                {
                     "type": "text",
-                    "name": "transport4",
+                    "name": "transport5",
                     "visibleIf": "{transport3} == true",
                     "title": "¿Cuántas horas pasa a la semana en promedio en el transporte público? ",
                     "isRequired": true,
@@ -80,7 +95,7 @@ class Quiz extends Component {
                 },
                 {
                     "type": "text",
-                    "name": "transport5",
+                    "name": "transport6",
                     "visibleIf": "{transport3} == true",
                     "title": "¿Cuánto dinero gasta en gasolina por semana?",
                     "isRequired": true,
@@ -95,7 +110,7 @@ class Quiz extends Component {
                 },
                 {
                     "type": "text",
-                    "name": "transport6",
+                    "name": "transport7",
                     "visibleIf": "{transport3} == true",
                     "title": "¿Cantidad de horas que viaja al año en avión?",
                     "isRequired": true,
@@ -183,12 +198,39 @@ class Quiz extends Component {
         }
     ]
 };
-
   render() {
     var model = new Survey.Model(this.json);
     model.onComplete.add(function (sender) {
+      function calculate_value(data){
+          const n = data['numberHome'];
+          const nc = data['transport1'];
+          const ha = data['transport2'];
+          const P3 = (ha * 4.2 *52 )/nc;
+          const ht = data['transport4'];
+          const htp = data['transport5'];
+          const gaso = data['transport6'];
+          const hav = data['transport7'];
+          const P4 = ht * 3.5 * 52;
+          const P5 = htp * 4.2 *52 ;
+          const P6 = (gaso * 0.217 * 2.37)/nc;
+          const P7 = hav *75;
+          const luz = data['energy1'];
+          const P8 = (luz * 1.28 *12)/n;
+          const gas = data['energy2'];
+          const P9 = (14.25 * gas *12)/n;
+          const carne = data['aliment1'];
+          const P10 = carne *5.4*52;
+          const bolsas = data['residue1'];
+          const P11 = bolsas * 0.033 *52;
+
+          const HC = (((P3+P6)/2) + P4 +P5 +P6 +P9 + P10 + P11)/1000;
+          return HC;
+
+      };
       document.querySelector("#surveyResult").textContent =
         "Result JSON:\n" + JSON.stringify(sender.data, null, 3);
+      // sender.data['resultado'] = calculate_value(sender.data);
+      // alert (sender.data['resultado'])
       fetch("http://54.149.211.70:5000/save-data", {
         method: "POST",
         body: JSON.stringify(sender.data),
