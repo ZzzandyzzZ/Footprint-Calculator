@@ -89,7 +89,7 @@ class Quiz extends Component {
                 document
                     .querySelector('#surveyResult')
                     .textContent = "Result JSON:\n" + JSON.stringify(sender.data, null, 3);
-                fetch("http://34.219.11.56:5000/save-data", {
+                fetch("http://54.149.211.70/save-data", {
                     method: 'POST',
                     body: JSON.stringify(sender.data),
                 })
