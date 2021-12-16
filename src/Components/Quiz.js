@@ -114,7 +114,7 @@ class Quiz extends Component {
             type: "text",
             name: "transport4",
             visibleIf: "{transport3} == true",
-            title:"¿Cuántas horas normalmente utiliza taxis a la semana?",
+            title: "¿Cuántas horas normalmente utiliza taxis a la semana?",
             isRequired: true,
             validators: [
               {
@@ -265,9 +265,13 @@ class Quiz extends Component {
     ],
     showProgressBar: "top",
     progressBarType: "buttons",
+    completedHtml: "<h4>Tu huella de carbono es de <b>{resultado}</b>.</h4>",
   };
   render() {
-    var model = new Survey.Model(this.json);
+    var options = {
+      showLogicTab: true,
+    };
+    var model = new Survey.Model(this.json, options);
     model.onComplete.add(function (sender) {
       const name = sender.data["name"];
       const email = sender.data["email"];
@@ -306,6 +310,8 @@ class Quiz extends Component {
       data.name = name;
       data.result = HC;
       console.log(data);
+      model.setVariable("resultado", HC.toFixed(2));
+
       fetch("http://54.149.211.70:5000/save-data", {
         method: "POST",
         body: JSON.stringify(data),
