@@ -11,23 +11,23 @@ class Quiz extends Component {
     title: "Carbon Footprint UNSA",
     pages: [
       {
-        "title": "Datos personales",
-        "elements": [
-            {
-                "type": "text",
-                "name": "name",
-                "title": "Ingresa tus nombres y apellidos",
-                "hasOther": true,
-                "isRequired": true,
-            },
-            {
-              "type": "text",
-              "name": "email",
-              "title": "Ingresa tu email",
-              "hasOther": true,
-              "isRequired": true,
-          }
-        ]
+        title: "Datos personales",
+        elements: [
+          {
+            type: "text",
+            name: "name",
+            title: "Ingresa tus nombres y apellidos",
+            hasOther: true,
+            isRequired: true,
+          },
+          {
+            type: "text",
+            name: "email",
+            title: "Ingresa tu email",
+            hasOther: true,
+            isRequired: true,
+          },
+        ],
       },
       // {
       //   title: "Hogar",
@@ -205,9 +205,8 @@ class Quiz extends Component {
   render() {
     var model = new Survey.Model(this.json);
     model.onComplete.add(function (sender) {
-      console.log(sender.data);
-      const name = sender.data['name'];
-      const email = sender.data['email'];
+      const name = sender.data["name"];
+      const email = sender.data["email"];
       const n = sender.data["numberHome"];
       const nc = sender.data["transport1"];
       const ha = sender.data["transport2"];
@@ -231,17 +230,13 @@ class Quiz extends Component {
 
       const HC = ((P3 + P6) / 2 + P4 + P5 + P6 + P9 + P10 + P11) / 1000;
 
-      sender.data.resultado = 1;
-      sender.data['result']=11;
-      Object.defineProperty(sender.data, 'res', {
-        value: 1
-      })
-      console.log(sender.data)
-      document.querySelector("#surveyResult").textContent =
-        "Result JSON:\n" + JSON.stringify(sender.data, null, 3);
+      var data = sender.data;
+      data.email = email;
+      data.name = name;
+      data.result = HC;
       fetch("http://54.149.211.70:5000/save-data", {
         method: "POST",
-        body: JSON.stringify(sender.data),
+        body: JSON.stringify(data),
       })
         .then((res) => res.json())
         .then(
@@ -252,7 +247,7 @@ class Quiz extends Component {
             alert(`Error: ${err}`);
           }
         );
-      console.log(sender.data);
+      console.log(data);
     });
     model.showProgressBar = "bottom";
     return <Survey.Survey model={model} />;

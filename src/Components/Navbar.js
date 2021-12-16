@@ -1,18 +1,18 @@
 export default function Navbar() {
   return (
-    <header class="mb-auto">
-      <h3 class="float-md-start mb-0">
+    <header className="mb-auto">
+      <h3 className="float-md-start mb-0">
         <img className="m-2" src="logo_unsa.png" width="60px" />
         CarbCalculator
       </h3>
-      <nav class="nav nav-masthead float-md-end">
-        <a class="nav-link active" aria-current="page" href="/">
+      <nav className="nav nav-masthead float-md-end">
+        <a className="nav-link active" aria-current="page" href="/">
           Home
         </a>
-        <a class="nav-link" href="/information">
+        <a className="nav-link" href="/information">
           Conoce más
         </a>
-        <a class="nav-link" href="/about">
+        <a className="nav-link" href="/about">
           Nosotros
         </a>
       </nav>

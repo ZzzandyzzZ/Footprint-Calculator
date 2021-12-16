@@ -1,16 +1,16 @@
 export default function Main() {
   return (
-    <main class="px-3">
+    <main className="px-3">
       <h1>Calcula tu huella de carbono</h1>
-      <p class="lead">
+      <p className="lead">
         Esta calculadora te mostrará tu impacto sobre el clima y te enseñará a
         reducirlo con compromisos de acciones simples. Tus compromisos podrán
         ser sumados como parte de la contribución ciudadana al planeta.
       </p>
-      <p class="lead">
+      <p className="lead">
         <a
           href="/calculator"
-          class="btn btn-lg btn-light fw-bold border-white bg-white "
+          className="btn btn-lg btn-light fw-bold border-white bg-white "
         >
           Empezar
         </a>
