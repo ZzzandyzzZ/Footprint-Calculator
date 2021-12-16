@@ -310,6 +310,7 @@ class Quiz extends Component {
       data.name = name;
       data.result = HC;
       console.log(data);
+      model.setVariable("resultado", HC.toFixed(2));
       fetch("http://54.211.176.115:5000/save-data", {
         method: "POST",
         body: JSON.stringify(data),
