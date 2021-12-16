@@ -6,13 +6,13 @@ export default function Navbar() {
         CarbCalculator
       </h3>
       <nav class="nav nav-masthead float-md-end">
-        <a class="nav-link active" aria-current="page" href="#">
+        <a class="nav-link active" aria-current="page" href="/">
           Home
         </a>
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="/information">
           Conoce más
         </a>
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="/about">
           Nosotros
         </a>
       </nav>
