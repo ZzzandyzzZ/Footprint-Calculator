@@ -83,7 +83,7 @@ class Quiz extends Component {
             validators: [
               {
                 type: "numeric",
-                minValue: 2,
+                minValue: 0,
                 maxValue: 10000,
               },
             ],
@@ -98,7 +98,7 @@ class Quiz extends Component {
             validators: [
               {
                 type: "numeric",
-                minValue: 5,
+                minValue:0,
                 maxValue: 10000,
               },
             ],
@@ -119,7 +119,7 @@ class Quiz extends Component {
             validators: [
               {
                 type: "numeric",
-                minValue: 3,
+                minValue: 0,
                 maxValue: 10000,
               },
             ],
@@ -134,7 +134,7 @@ class Quiz extends Component {
             validators: [
               {
                 type: "numeric",
-                minValue: 3,
+                minValue: 0,
                 maxValue: 10000,
               },
             ],
@@ -188,7 +188,7 @@ class Quiz extends Component {
             validators: [
               {
                 type: "numeric",
-                minValue: 10,
+                minValue: 0,
                 maxValue: 10000,
               },
             ],
@@ -202,7 +202,7 @@ class Quiz extends Component {
             validators: [
               {
                 type: "numeric",
-                minValue: 1,
+                minValue: 0,
                 maxValue: 10000,
               },
             ],
