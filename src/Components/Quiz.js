@@ -265,9 +265,13 @@ class Quiz extends Component {
     ],
     showProgressBar: "top",
     progressBarType: "buttons",
+    completedHtml: "<h4>Tu huella de carbono es de <b>{resultado}</b>.</h4>",
   };
   render() {
-    var model = new Survey.Model(this.json);
+    var options = {
+      showLogicTab: true,
+    };
+    var model = new Survey.Model(this.json, options);
     model.onComplete.add(function (sender) {
       const name = sender.data["name"];
       const email = sender.data["email"];
