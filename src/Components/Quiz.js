@@ -11,6 +11,25 @@ class Quiz extends Component {
     title: "Carbon Footprint UNSA",
     pages: [
       {
+        "title": "Datos personales",
+        "elements": [
+            {
+                "type": "text",
+                "name": "name",
+                "title": "Ingresa tus nombres y apellidos",
+                "hasOther": true,
+                "isRequired": true,
+            },
+            {
+              "type": "text",
+              "name": "email",
+              "title": "Ingresa tu email",
+              "hasOther": true,
+              "isRequired": true,
+          }
+        ]
+      },
+      {
         title: "Hogar",
         elements: [
           {
@@ -187,6 +206,8 @@ class Quiz extends Component {
     var model = new Survey.Model(this.json);
     model.onComplete.add(function (sender) {
       function calculate_value(data) {
+        const name = data['name'];
+        const email = data['email'];
         const n = data["numberHome"];
         const nc = data["transport1"];
         const ha = data["transport2"];
@@ -209,7 +230,7 @@ class Quiz extends Component {
         const P11 = bolsas * 0.033 * 52;
 
         const HC = ((P3 + P6) / 2 + P4 + P5 + P6 + P9 + P10 + P11) / 1000;
-        return HC;
+        return {HC, name, email};
       }
       document.querySelector("#surveyResult").textContent =
         "Result JSON:\n" + JSON.stringify(sender.data, null, 3);
