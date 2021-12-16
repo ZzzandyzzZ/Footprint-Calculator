@@ -279,11 +279,11 @@ class Quiz extends Component {
       const nc = sender.data["transport1"];
       const ha = sender.data["transport2"];
       const P3 = (ha * 4.2 * 52) / nc;
-      const transport_public = sender.data["transport3"];
-      const ht = 0;
-      const htp = 0;
-      const gaso = 0;
-      const hav = 0;
+      var transport_public = sender.data["transport3"];
+      var ht = 0;
+      var htp = 0;
+      var gaso = 0;
+      var hav = 0;
       if (transport_public == true) {
         ht = sender.data["transport4"];
         htp = sender.data["transport5"];
