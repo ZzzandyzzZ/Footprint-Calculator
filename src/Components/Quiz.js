@@ -3,7 +3,7 @@ import "survey-react/survey.css";
 import React, { Component } from "react";
 
 Survey.StylesManager.applyTheme("stone");
-
+Survey.surveyLocalization.locales[Survey.surveyLocalization.defaultLocale].requiredError = "Este campo no puede ir vacío";
 class Quiz extends Component {
   //Define Survey JSON
   //Here is the simplest Survey with one text question
