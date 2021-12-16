@@ -293,8 +293,10 @@ class Quiz extends Component {
       const P4 = ht * 3.5 * 52;
       const P5 = htp * 4.2 * 52;
       var P6 = 0;
-      if (nc > 0) {
+      if (gaso > 0) {
         P6 = (gaso * 0.217 * 2.37) / nc;
+      }
+      if (nc > 0) {
         P3 = (ha * 4.2 * 52) / nc;
       }
       const P7 = hav * 75;
@@ -302,11 +304,11 @@ class Quiz extends Component {
       var P9 = 0;
       var P8 = 0;
 
+      const gas = sender.data["energy2"];
       if (n > 0) {
         P8 = (luz * 1.28 * 12) / n;
         P9 = (14.25 * gas * 12) / n;
       }
-      const gas = sender.data["energy2"];
       const carne = sender.data["aliment1"];
       const P10 = carne * 5.4 * 52;
       const bolsas = sender.data["residue1"];
