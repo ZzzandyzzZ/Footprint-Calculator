@@ -1,5 +1,6 @@
 import './App.css';
 import Question from "./Components/Question";
+import Quiz from "./Components/Quiz";
 
 function App() {
   return (
@@ -8,7 +9,8 @@ function App() {
         <h1> Carbon Footprint UNSA</h1>
       </header>
       <body>
-        <Question/>
+        <Quiz/>
+        <div id="surveyResult"></div>
       </body>
       <footer>
         Derechos reservados
